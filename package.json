@@ -1,0 +1,34 @@
+{
+  "name": "wtwr_express",
+  "version": "0.0.1",
+  "description": "Backend server on Express.js framework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HexarchGit/se_project_express.git"
+  },
+  "author": "Sergei Sushko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HexarchGit/se_project_express/issues"
+  },
+  "homepage": "https://github.com/HexarchGit/se_project_express#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.15.1",
+    "validator": "^13.15.15"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-import": "^2.31.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^2.8.8"
+  }
+}
