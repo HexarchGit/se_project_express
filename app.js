@@ -3,8 +3,7 @@ const express = require("express");
 
 const app = express();
 const mongoose = require("mongoose");
-const userRouter = require("./routes/users");
-const itemRouter = require("./routes/clothingItems");
+const { userRouter, itemRouter } = require("./routes");
 // const authorization = require("./middlewares/authorization");
 const { NotFoundError } = require("./utils/errors");
 

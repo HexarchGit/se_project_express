@@ -1,18 +1,17 @@
 const User = require("../models/user");
-const { OK, CREATED } = require("../utils/responses");
+const { CREATED } = require("../utils/responses");
 
 module.exports.getUser = (req, res, next) => {
   User.findById(req.params.userId)
     .orFail()
-    .then((user) => res.status(OK).send(user))
+    .then((user) => res.send(user))
     .catch((error) => {
       next(error);
     });
 };
 module.exports.getUsers = (_req, res, next) => {
   User.find({})
-    .orFail()
-    .then((user) => res.status(OK).send(user))
+    .then((user) => res.send(user))
     .catch((error) => {
       next(error);
     });

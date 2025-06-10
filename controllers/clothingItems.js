@@ -1,11 +1,10 @@
 const Item = require("../models/clothingItem");
 const { NotFoundError } = require("../utils/errors");
-const { OK, CREATED } = require("../utils/responses");
+const { CREATED } = require("../utils/responses");
 
 module.exports.getItems = (_req, res, next) => {
   Item.find({})
-    .orFail()
-    .then((items) => res.status(OK).send(items))
+    .then((items) => res.send(items))
     .catch((error) => {
       next(error);
     });
@@ -24,7 +23,7 @@ module.exports.deleteItem = (req, res, next) => {
   Item.findByIdAndDelete(req.params.itemId)
     .then((item) => {
       if (!item) throw new NotFoundError("No item to delete");
-      res.status(OK).send(item);
+      res.send(item);
     })
     .catch((error) => {
       next(error);
@@ -39,7 +38,7 @@ module.exports.addLike = (req, res, next) => {
   )
     .then((item) => {
       if (!item) throw new NotFoundError("No item to like");
-      res.status(OK).send(item);
+      res.send(item);
     })
     .catch((error) => {
       next(error);
@@ -53,7 +52,7 @@ module.exports.deleteLike = (req, res, next) => {
   )
     .then((item) => {
       if (!item) throw new NotFoundError("No item to dislike");
-      res.status(OK).send(item);
+      res.send(item);
     })
     .catch((error) => {
       next(error);
