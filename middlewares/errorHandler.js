@@ -1,4 +1,5 @@
 const { AppError, ServerError } = require("../utils/errors");
+
 const serverError = new ServerError();
 
 module.exports = (error, _req, res, _next) => {
