@@ -1,23 +1,16 @@
-const { PORT = 3001 } = process.env;
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
+const routes = require("./routes");
+const { NotFoundError } = require("./utils/errors");
 
 const app = express();
-const mongoose = require("mongoose");
-const { userRouter, itemRouter } = require("./routes");
-// const authorization = require("./middlewares/authorization");
-const { NotFoundError } = require("./utils/errors");
+const { PORT = 3001 } = process.env;
 
 mongoose.connect("mongodb://127.0.0.1:27017/wtwr_db");
 
 app.use(express.json());
-app.use(
-  (module.exports = (req, _res, next) => {
-    req.user = { _id: "6844a627c9d7f248f2ad5057" };
-    next();
-  })
-);
-app.use("/users", userRouter);
-app.use("/items", itemRouter);
+app.use(routes);
 app.use((_req, _res, next) => {
   next(new NotFoundError("Requested resource not found"));
 });
