@@ -21,7 +21,7 @@ module.exports = {
   },
   rules: {
     "no-underscore-dangle": ["error", { allow: ["_id"] }],
-    "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "no-unused-vars": ["error", { argsIgnorePattern: "^_|next" }],
     "no-console": ["error", { allow: ["error"] }],
   },
 };
