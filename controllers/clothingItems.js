@@ -33,7 +33,6 @@ module.exports.deleteItem = async (req, res, next) => {
     );
     if (item.owner.toString() !== req.user._id) throw new ForbiddenError();
     const deletedItem = await Item.findByIdAndDelete(req.params.itemId);
-    // if (!deletedItem) throw new NotFoundError("No item to delete");
     res.send(deletedItem);
   } catch (error) {
     next(error);
