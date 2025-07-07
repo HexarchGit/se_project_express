@@ -29,7 +29,6 @@ app.use(helmet());
 app.use(
   cors({
     origin: "https://wtwrproject.jumpingcrab.com",
-    credentials: true,
   })
 );
 app.use(xss());
