@@ -14,7 +14,7 @@ const authLimiter = rateLimit({
   message: "Too many login attempts, try again later.",
 });
 
-router.get("/crash-test", () => {
+router.get("/crash-test", (_req, _res, next) => {
   setTimeout(() => {
     next(new Error("Server will crash now"));
   }, 0);

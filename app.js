@@ -13,6 +13,7 @@ const { NotFoundError } = require("./utils/errors");
 const errorMapper = require("./middlewares/errorMapper");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+
 const app = express();
 const { PORT = 3001, CORS_ORIGIN = "http://localhost:3000" } = process.env;
 const globalLimiter = rateLimit({
