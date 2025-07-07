@@ -31,7 +31,9 @@ module.exports.errorLogger = expressWinston.errorLogger({
     new winston.transports.Console({
       format: messageFormatConsole,
     }),
-    new winston.transports.File({ filename: "error.log" }),
+    new winston.transports.File({
+      filename: "error.log",
+      format: winston.format.json(),
+    }),
   ],
-  format: messageFormatLogFile,
 });
