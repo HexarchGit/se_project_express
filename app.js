@@ -13,9 +13,8 @@ const { NotFoundError } = require("./utils/errors");
 const errorMapper = require("./middlewares/errorMapper");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-
 const app = express();
-const { PORT = 3001 } = process.env;
+const { PORT = 3001, CORS_ORIGIN = "http://localhost:3000" } = process.env;
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -28,7 +27,7 @@ app.use(globalLimiter);
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://wtwrproject.jumpingcrab.com",
+    origin: CORS_ORIGIN,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Authorization", "Content-Type"],
   })

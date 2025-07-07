@@ -1,7 +1,7 @@
 const winston = require("winston");
 const expressWinston = require("express-winston");
 
-const messageFormat = winston.format.combine(
+const messageFormatConsole = winston.format.combine(
   winston.format.timestamp(),
   winston.format.printf(
     ({ level, message, meta, timestamp }) =>
@@ -9,17 +9,19 @@ const messageFormat = winston.format.combine(
   )
 );
 
+const messageFormatLogFile = winston.format.combine(
+  winston.format.timestamp(),
+  winston.format.json()
+);
+
 module.exports.requestLogger = expressWinston.logger({
   transports: [
     new winston.transports.Console({
-      format: messageFormat,
+      format: messageFormatConsole,
     }),
     new winston.transports.File({
       filename: "request.log",
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.json()
-      ),
+      format: messageFormatLogFile,
     }),
   ],
 });
@@ -27,12 +29,9 @@ module.exports.requestLogger = expressWinston.logger({
 module.exports.errorLogger = expressWinston.errorLogger({
   transports: [
     new winston.transports.Console({
-      format: messageFormat,
+      format: messageFormatConsole,
     }),
     new winston.transports.File({ filename: "error.log" }),
   ],
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
+  format: messageFormatLogFile,
 });
