@@ -15,3 +15,9 @@ For project used Node.js platform with Express.js framework and MongoDB as a dat
 - Node.js
 - Express.js
 - MongooseDB
+
+##
+
+- [React/Vite frontend on Github](https://github.com/HexarchGit/se_project_react)
+- [Deployed project](https://wtwrproject.jumpingcrab.com/)
+- [Projects API](https://api.wtwrproject.jumpingcrab.com/)

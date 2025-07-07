@@ -7,6 +7,11 @@ const {
   validateLogin,
 } = require("../middlewares/validation");
 
+router.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Server will crash now");
+  }, 0);
+});
 router.post("/signup", validateCreateUser, createUser);
 router.post("/signin", validateLogin, login);
 router.use("/users", userRouter);
