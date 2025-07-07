@@ -29,6 +29,8 @@ app.use(helmet());
 app.use(
   cors({
     origin: "https://wtwrproject.jumpingcrab.com",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Authorization", "Content-Type"],
   })
 );
 app.use(xss());
