@@ -1,6 +1,6 @@
 {
   "name": "wtwr_express",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Backend server on Express.js framework",
   "main": "app.js",
   "scripts": {
