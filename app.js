@@ -13,23 +13,19 @@ const { NotFoundError } = require("./utils/errors");
 const errorMapper = require("./middlewares/errorMapper");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const limiterConfig = require("./utils/limiterConfig");
 
 const app = express();
 const { PORT = 3001, CORS_ORIGIN = "http://localhost:3000" } = process.env;
-const globalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: "Too many requests, try again later.",
-});
 
 mongoose.connect("mongodb://127.0.0.1:27017/wtwr_db");
 
-app.use(globalLimiter);
+app.use(rateLimit(limiterConfig));
 app.use(helmet());
 app.use(
   cors({
     origin: CORS_ORIGIN,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "POST"],
     allowedHeaders: ["Authorization", "Content-Type"],
   })
 );
@@ -39,11 +35,11 @@ app.use(hpp());
 app.use(express.json());
 app.use(requestLogger);
 app.use(routes);
-app.use(errorLogger);
-app.use(errors());
 app.use((_req, _res, next) => {
   next(new NotFoundError("Requested resource not found"));
 });
+app.use(errorLogger);
+app.use(errors());
 app.use(errorMapper);
 app.use(errorHandler);
 app.listen(PORT, () => {});
